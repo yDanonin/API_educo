@@ -1,49 +1,35 @@
 import { Router } from "express";
 
 import CreateUserService from "../services/CreateUserService";
-import AuthenticateUserService from "../services/AuthenticateUserServicec";
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const usersRouter = Router()
 
-usersRouter.post('/authentication', async (request, response)=>{
-  try{
-    const {email, password} = request.body
-    const authenticateUser = new AuthenticateUserService();
-    const user = await authenticateUser.execute({
-      email,
-      password,
-    })
+usersRouter.use(ensureAuthenticated)
+usersRouter.get('/id', async (request, response) => {
 
-    return response.json(user)
-
-  }catch (err){
-    console.log(request.body)
-    console.log(err);
-    return response.status(400).json({ error: err.message });
-  }
+  console.log(request.user)
+  return response.json(request.user)
 })
+
 
 usersRouter.post('/', async (request, response) => {
   try {
     const { name, email, password } = request.body;
     const createUser = new CreateUserService();
-    const user: User = await createUser.execute({
+    const user = await createUser.execute({
       name,
       email,
       password,
     });
-
-    interface User {
-      password?: string,
-    }
 
     delete user.password
 
 
     return response.json(user);
   }catch (err){
-    console.log(request.body)
-    console.log(err);
+    //console.log(request.body)
+    //console.log(err);
     return response.status(400).json({ error: err.message });
   }
 });
