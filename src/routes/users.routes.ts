@@ -1,17 +1,8 @@
 import { Router } from "express";
 
 import CreateUserService from "../services/CreateUserService";
-import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const usersRouter = Router()
-
-usersRouter.use(ensureAuthenticated)
-usersRouter.get('/id', async (request, response) => {
-
-  console.log(request.user)
-  return response.json(request.user)
-})
-
 
 usersRouter.post('/', async (request, response) => {
   try {
