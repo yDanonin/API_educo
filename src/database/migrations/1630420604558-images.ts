@@ -13,6 +13,7 @@ export default class images1630420604558 implements MigrationInterface {
                   isPrimary: true,
                   isGenerated: true
               },
+
               {
                 name: 'userId',
                 type: 'varchar',

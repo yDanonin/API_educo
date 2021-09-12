@@ -4,3 +4,4 @@ export default {
     expiresIn: '1d',
   }
 };
+

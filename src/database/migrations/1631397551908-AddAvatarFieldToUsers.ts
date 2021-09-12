@@ -16,6 +16,7 @@ export class AddAvatarFieldToUsers1631397551908 implements MigrationInterface {
     }));
     }
 
+
     public async down(queryRunner: QueryRunner): Promise<void> {
     const table = await queryRunner.getTable("users");
     const foreignKey = table.foreignKeys.find(fk => fk.columnNames.indexOf("avatar") !== -1);

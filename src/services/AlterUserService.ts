@@ -12,6 +12,7 @@ class AlterUserService{
         const checkUserExists = await usersRepository.findOne({
           where: { id },
       });
+
         checkUserExists.avatar = avatar
         //console.log(checkUserExists)
         return usersRepository.save(checkUserExists);
