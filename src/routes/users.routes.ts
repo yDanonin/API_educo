@@ -1,6 +1,7 @@
-import { Router } from "express";
+import { response, Router } from "express";
 
 import CreateUserService from "../services/CreateUserService";
+import AlterUserService from "../services/AlterUserService";
 
 const usersRouter = Router()
 
@@ -24,5 +25,17 @@ usersRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message });
   }
 });
+usersRouter.put('/:id', async (request, response) => {
+  try{
+    const { id }  = request.params
+    const { avatar } = request.body
+    const alterUser = new AlterUserService();
+    const user = await alterUser.execute({id, avatar})
+
+    return response.json(user)
+  }catch (err){
+    return response.status(400).json({ error: err.message });
+  }
+})
 
 export default usersRouter;

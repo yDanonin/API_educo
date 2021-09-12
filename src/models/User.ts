@@ -3,8 +3,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm';
+import Images from './Images';
 
 @Entity('users')
 class User {
@@ -19,6 +22,13 @@ class User {
 
   @Column('varchar')
   password: string;
+
+  @Column()
+  avatar: number
+
+  @OneToOne(() => Images, (image) => image.id)
+  @JoinColumn({ name: "avatar" })
+  avatarId: Images;
 
   @CreateDateColumn()
   created_at: Date;

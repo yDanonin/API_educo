@@ -26,10 +26,6 @@ export default class images1630420604558 implements MigrationInterface {
                 type: 'varchar',
               },
               {
-                name: 'tipo',
-                type: 'varchar',
-              },
-              {
                   name: 'created_at',
                   type: 'timestamp',
                   default: 'now()',

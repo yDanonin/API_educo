@@ -21,16 +21,11 @@ class Images {
   @JoinColumn({ name: "userId" })
   users: User;
 
-
   @Column('varchar')
   nome: string;
 
-
   @Column('varchar')
   local: string;
-
-  @Column('varchar')
-  tipo: string;
 
   @CreateDateColumn()
   created_at: Date;
