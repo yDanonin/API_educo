@@ -1,7 +1,7 @@
 import { response, Router } from "express";
 
 import CreateUserService from "../services/CreateUserService";
-import AlterUserService from "../services/AlterUserService";
+import AlterAvatarService from "../services/AlterAvatarService";
 
 const usersRouter = Router()
 
@@ -25,14 +25,14 @@ usersRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message });
   }
 });
-usersRouter.put('/:id', async (request, response) => {
+usersRouter.put('/avatar/:id', async (request, response) => {
   try{
     const { id }  = request.params
     const { avatar } = request.body
-    const alterUser = new AlterUserService();
+    const alterUser = new AlterAvatarService();
     const user = await alterUser.execute({id, avatar})
 
-    return response.json(user)
+    return response.json({ok: true})
   }catch (err){
     return response.status(400).json({ error: err.message });
   }

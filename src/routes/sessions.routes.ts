@@ -30,9 +30,9 @@ sessionsRouter.post('/', async (request, response)=>{
 
 sessionsRouter.use(ensureAuthenticated);
 
-sessionsRouter.get('/id', async (request, response) => {
+sessionsRouter.get('/', async (request, response) => {
 
-  console.log(request.user)
+  //console.log(request.user)
   return response.json(request.user)
 })
 
