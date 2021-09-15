@@ -29,10 +29,10 @@ usersRouter.put('/avatar/:id', async (request, response) => {
   try{
     const { id }  = request.params
     const { avatar } = request.body
-    const alterUser = new AlterAvatarService();
-    const user = await alterUser.execute({id, avatar})
+    const alterAvatar = new AlterAvatarService();
+    const localAvatar = await alterAvatar.execute({id, avatar})
 
-    return response.json({ok: true})
+    return response.json({local: localAvatar.local})
   }catch (err){
     return response.status(400).json({ error: err.message });
   }

@@ -8,7 +8,7 @@ interface Request {
     avatar?: number,
 }
 class AlterAvatarService{
-    public async execute({ id,  avatar }: Request): Promise<User>{
+    public async execute({ id,  avatar }: Request): Promise<Image>{
         const usersRepository = getRepository(User);
         const imageRepository = getRepository(Image)
 
@@ -24,7 +24,9 @@ class AlterAvatarService{
         }
 
         checkUserExists.avatar = avatar
-        return usersRepository.save(checkUserExists);
+        await usersRepository.save(checkUserExists);
+
+        return checkImageExist
     }
 }
 
