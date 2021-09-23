@@ -1,13 +1,15 @@
-import { response, Router } from "express";
+import { Router } from "express";
 
 import CreateUserService from "../services/CreateUserService";
 import AlterAvatarService from "../services/AlterAvatarService";
+import GetUserService from "../services/GetUserService";
+import DeleteUserService from "../services/DeleteUserService";
 
 const usersRouter = Router()
 
-usersRouter.post('/', async (request, response) => {
+usersRouter.post('/', async (req, res) => {
   try {
-    const { name, email, password } = request.body;
+    const { name, email, password } = req.body;
     const createUser = new CreateUserService();
     const user = await createUser.execute({
       name,
@@ -18,23 +20,49 @@ usersRouter.post('/', async (request, response) => {
     delete user.password
 
 
-    return response.json(user);
+    return res.json(user);
   }catch (err){
     //console.log(request.body)
     //console.log(err);
-    return response.status(400).json({ error: err.message });
+    return res.status(400).json({ error: err.message });
   }
 });
-usersRouter.put('/avatar/:id', async (request, response) => {
+
+usersRouter.get('/:id', async (req, res) => {
   try{
-    const { id }  = request.params
-    const { avatar } = request.body
+    const { id } = req.params;
+    const getUser = new GetUserService();
+    const user = await getUser.execute({id});
+
+    return res.json(user);
+  }
+  catch(err){
+    return res.status(400).json({ error: err.message });
+  }
+})
+
+usersRouter.put('/avatar/:id', async (req, res) => {
+  try{
+    const { id }  = req.params
+    const { avatar } = req.body
     const alterAvatar = new AlterAvatarService();
     const localAvatar = await alterAvatar.execute({id, avatar})
 
-    return response.json({local: localAvatar.local})
+    return res.json({local: localAvatar.local})
   }catch (err){
-    return response.status(400).json({ error: err.message });
+    return res.status(400).json({ error: err.message });
+  }
+})
+usersRouter.delete('/:id', async (req, res) =>{
+  try{
+    const { id } = req.params;
+    const deleteUser = new DeleteUserService()
+
+    const user = await deleteUser.execute({id})
+
+    res.json(user);
+  }catch(err){
+    return res.status(400).json({error: err.message});
   }
 })
 
