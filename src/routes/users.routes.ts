@@ -28,7 +28,7 @@ usersRouter.post('/', async (req, res) => {
   }
 });
 
-usersRouter.get('/:id', async (req, res) => {
+usersRouter.get('/by_id/:id', async (req, res) => {
   try{
     const { id } = req.params;
     const getUser = new GetUserService();
