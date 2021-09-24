@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import CreatePostService from "../services/CreatePostService";
+import GetPostService from "../services/GetPostService";
 
 const postsRouter = Router()
 
@@ -24,6 +25,16 @@ postsRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message });
   }
 });
+postsRouter.get('/by_user/:userId', async (req, res)=> {
+  try{
+    const userId = req.params.userId
+    const getPost = new GetPostService();
+    const post = await getPost.execute({userId})
 
+    res.json(post);
+  }catch(err){
+    res.status(400).json({error: err.message});
+  }
+})
 
 export default postsRouter;

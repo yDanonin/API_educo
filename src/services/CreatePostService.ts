@@ -12,13 +12,14 @@ class CreatePostService{
     public async execute({ userId, text, imageId }: Request): Promise<Post>{
         const postsRepository = getRepository(Post);
         const imageRepository = getRepository(Image)
+        if(imageId != null){
+          const checkImageExist = await imageRepository.findOne({
+            where: { id: imageId, userId }
+          })
 
-        const checkImageExist = await imageRepository.findOne({
-          where: { id: imageId, userId }
-        })
-
-        if (!checkImageExist){
-          throw new Error('image does not exist')
+          if (!checkImageExist){
+            throw new Error('image does not exist')
+          }
         }
 
         const post = postsRepository.create({
