@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import CreateImageService from "../services/CreateImageService";
 import GetImageService from "../services/GetImageService";
+import DeleteImageService from "../services/DeleteImageService";
 
 const imagesRouter = Router()
 
@@ -37,6 +38,19 @@ imagesRouter.get('/by_id/:id', async (req, res) => {
 
     return res.status(400).json({ error: err.message });
   }
+})
+imagesRouter.delete('/:id', async (req, res) => {
+    try{
+      const StringId = req.params.id
+      const id = +StringId
+      const deleteImage = new DeleteImageService()
+
+      const response = await deleteImage.execute({id})
+
+      res.json(response);
+    }catch(err){
+      res.status(400).json({error: err.message})
+    }
 })
 
 export default imagesRouter;
