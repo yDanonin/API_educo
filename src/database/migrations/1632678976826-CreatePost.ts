@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export class CreatePost1631881874198 implements MigrationInterface {
+export class CreatePost1632678976826 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(
@@ -18,13 +18,17 @@ export class CreatePost1631881874198 implements MigrationInterface {
               type: 'text',
             },
             {
+              name: 'imageId',
+              type: 'int',
+              isNullable: true,
+            },
+            {
               name: 'userId',
               type: 'varchar',
             },
             {
-              name: 'imageId',
+              name: 'groupId',
               type: 'int',
-              isNullable: true,
             },
             {
               name: 'created_at',
@@ -50,19 +54,27 @@ export class CreatePost1631881874198 implements MigrationInterface {
       referencedColumnNames: ["id"],
       referencedTableName: "users",
       onDelete: "CASCADE"
-  }));
+    }))
+    await queryRunner.createForeignKey("posts", new TableForeignKey({
+      columnNames: ["groupId"],
+      referencedColumnNames: ["id"],
+      referencedTableName: "groups",
+      onDelete: "CASCADE"
+    }))
     }
 
-
     public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable("posts");
-    const foreignKeyUser = table.foreignKeys.find(fk => fk.columnNames.indexOf("userId") !== -1);
-    await queryRunner.dropForeignKey("posts", foreignKeyUser);
-    await queryRunner.dropColumn("posts", "userId");
-    const foreignKeyImage = table.foreignKeys.find(fk => fk.columnNames.indexOf("imageId") !== -1);
-    await queryRunner.dropForeignKey("posts", foreignKeyImage);
-    await queryRunner.dropColumn("posts", "imageId");
-    await queryRunner.dropTable("posts");
+      const table = await queryRunner.getTable("posts");
+      const foreignKeyImage = table.foreignKeys.find(fk => fk.columnNames.indexOf("imageId") !== -1);
+      await queryRunner.dropForeignKey("posts", foreignKeyImage);
+      await queryRunner.dropColumn("posts", "imageId");
+      const foreignKeyUser = table.foreignKeys.find(fk => fk.columnNames.indexOf("userId") !== -1);
+      await queryRunner.dropForeignKey("posts", foreignKeyUser);
+      await queryRunner.dropColumn("posts", "userId");
+      const foreignKeyGroup = table.foreignKeys.find(fk => fk.columnNames.indexOf("groupId") !== -1);
+      await queryRunner.dropForeignKey("posts", foreignKeyGroup);
+      await queryRunner.dropColumn("posts", "groupId");
+      await queryRunner.dropTable("posts");
     }
 
 }

@@ -3,12 +3,12 @@ import { getRepository } from 'typeorm';
 import Post from '../models/Post';
 
 interface post{
-  userId: string
+  groupId: number
 }
 class GetPostService{
-    public async execute({ userId }: post): Promise<Array<Post>>{
+    public async execute({ groupId }: post): Promise<Array<Post>>{
       const postRepository = getRepository(Post)
-      const post = await postRepository.find({where: {userId}})
+      const post = await postRepository.find({where: {groupId}})
 
       return post;
   }

@@ -8,29 +8,29 @@ const postsRouter = Router()
 
 postsRouter.post('/', async (request, response) => {
   try {
-    const { userId, text, imageId } = request.body;
+    const { userId, text, imageId, groupId } = request.body;
 
     const createPost = new CreatePostService()
 
     const post = await createPost.execute({
       userId,
       text,
-      imageId
+      imageId,
+      groupId
     })
 
     return response.json(post)
 
   }catch (err){
-    //console.log(request.body)
-    //console.log(err);
     return response.status(400).json({ error: err.message });
   }
 });
-postsRouter.get('/by_user/:userId', async (req, res)=> {
+postsRouter.get('/by_group/:groupId', async (req, res)=> {
   try{
-    const userId = req.params.userId
+    const stringGroupId = req.params.groupId
+    const groupId = +stringGroupId
     const getPost = new GetPostService();
-    const post = await getPost.execute({userId})
+    const post = await getPost.execute({groupId})
 
     res.json(post);
   }catch(err){

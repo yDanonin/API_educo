@@ -10,29 +10,21 @@ import {
 
 import Images from './Images';
 import User from './User';
-import Group from './Group'
 
-@Entity('posts')
-class Post {
+@Entity('groups')
+class Group {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  text: string;
+  description: string;
 
   @Column()
-  userId: string
+  creator: string
 
   @OneToMany(() => User, (user) => user.id)
-  @JoinColumn({ name: "userId" })
+  @JoinColumn({ name: "creator" })
   users: User;
-
-  @Column()
-  groupId: number
-
-  @OneToMany(() => Group, (group) => group.id)
-  @JoinColumn({ name: "groupId" })
-  group: Group;
 
   @Column()
   imageId: number
@@ -41,6 +33,9 @@ class Post {
   @JoinColumn({ name: "imageId" })
   images: Images;
 
+  @Column()
+  nome: string
+
   @CreateDateColumn()
   created_at: Date;
 
@@ -48,4 +43,4 @@ class Post {
   updated_at: Date;
 }
 
-export default Post;
+export default Group;
