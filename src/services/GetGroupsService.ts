@@ -14,10 +14,8 @@ class GetGroupsService{
 
       const groups: Array<any> = []
 
-      let contador: number = 0
       for(let group of participant){
-        groups[contador] = await groupRepository.find({where:{ id: group.groupId }});
-        contador += 1
+        groups.push(await groupRepository.find({where:{ id: group.groupId }}));
       }
 
       return groups;
