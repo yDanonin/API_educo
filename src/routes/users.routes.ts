@@ -20,7 +20,7 @@ usersRouter.post('/', async (req, res) => {
     delete user.password
 
 
-    return res.json(user);
+    return res.json("Usuário cadastrado com sucesso.");
   }catch (err){
     //console.log(request.body)
     //console.log(err);

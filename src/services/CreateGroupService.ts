@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 
 import Image from '../models/Images';
 import Group from '../models/Group';
+import Participant from '../models/Participant';
 
 interface Request {
     creator: string;
@@ -13,6 +14,7 @@ class CreateGroupService{
     public async execute({ creator, imageId, description, nome }: Request): Promise<Group>{
         const groupsRepository = getRepository(Group);
         const imageRepository = getRepository(Image);
+        const participantRepository = getRepository(Participant);
 
         const checkImageExist = await imageRepository.findOne({
           where: { id: imageId, userId: creator }
@@ -29,6 +31,13 @@ class CreateGroupService{
         });
 
         await groupsRepository.save(group);
+
+        const participant = participantRepository.create({
+          userId: creator,
+          groupId: group.id
+        })
+
+        await participantRepository.save(participant)
 
         return group;
     }

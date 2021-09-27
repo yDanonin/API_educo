@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import CreateGroupService from "../services/CreateGroupService";
+import GetGroupsService from "../services/GetGroupsService";
 
 const groupsRouter = Router()
 
@@ -22,9 +23,22 @@ groupsRouter.post('/', async (req, res) =>{
       nome,
     })
 
-    return res.json(group)
+    return res.json("Grupo criado com sucesso.")
   }catch(err){
     return res.status(400).json({ Error:err.message })
+  }
+})
+groupsRouter.get('/:userId', async (req, res) => {
+  try{
+    const userId = req.params.userId
+    const getGroup = new GetGroupsService()
+
+    const groups = await getGroup.execute({userId})
+
+    return res.json(groups);
+
+  }catch(err){
+    return res.status(400).json({error: err.message})
   }
 })
 
