@@ -10,7 +10,7 @@ interface Request {
 class AlterAvatarService{
     public async execute({ id,  avatar }: Request): Promise<Image>{
         const usersRepository = getRepository(User);
-        const imageRepository = getRepository(Image)
+        const imageRepository = getRepository(Image);
 
         const checkUserExists = await usersRepository.findOne({
           where: { id },
