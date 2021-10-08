@@ -20,7 +20,7 @@ sessionsRouter.post('/', async (request, response)=>{
 
     delete user.password
 
-    return response.json({ token })
+    return response.json( token )
   }catch (err){
     //console.log(request.body)
     //console.log(err);
@@ -31,9 +31,12 @@ sessionsRouter.post('/', async (request, response)=>{
 sessionsRouter.use(ensureAuthenticated);
 
 sessionsRouter.get('/', async (request, response) => {
-
-  //console.log(request.user)
+  try{
   return response.json(request.user)
+  }
+  catch(err){
+    return response.status(400).json({error: err.message});
+  }
 })
 
 export default sessionsRouter;
