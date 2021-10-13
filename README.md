@@ -1,8 +1,20 @@
 # API_educo
-API do projeto TCC. O projeto é um site de educação onde alunos ajudam alunos com dúvidas.
+TCC project API. The project is an education website where students help students with questions.
 
-o projeto foi construido usando no back-end uma API feita com Node.js e com o framework express, foi utilizado também o typeorm e o docker para a criação de container junto com postgres.
+the project was built using in the back-end an API made with Node.js and with the express framework, it was also used the typeorm and the docker for the creation of the container along with postgres.
 
-quando baixado esse arquivo é possível executar o servidor com o comando "yarn dev:server"
+The project is still under development!!!
 
-afim de testar as rotas pode-se utilizar softwares como o insomnia ou testar com o próprio front-end do EDUCO que se encontra no link: https://github.com/GitHubWithCjcnch/educo-project.git
+# How to test
+
+- before running the server use the ``npm install`` command to download all packages and libraries used in this API.
+
+- once this file is downloaded you can run the server with the command ``yarn dev:server`` or ``npm dev:server``
+
+- don't forget to run the migration on your machine as we haven't put the API on a server yet because it's still under development.
+
+- To run the migration just give ``yarn typeorm migration:run`` or ``npm typeorm migration:run``
+
+- in order to test the routes, you can use software such as insomnia or test it with the EDUCO front-end that you can find at the link: https://github.com/GitHubWithCjcnch/educo-project.git
+
+- And that's it, enjoy 🎉
