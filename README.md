@@ -1,18 +1,20 @@
 # API_educo
-API do projeto TCC. O projeto é um site de educação onde alunos ajudam alunos com dúvidas.
+TCC project API. The project is an education website where students help students with questions.
 
-o projeto foi construido usando no back-end uma API feita com Node.js e com o framework express, foi utilizado também o typeorm e o docker para a criação de container junto com postgres.
+the project was built using in the back-end an API made with Node.js and with the express framework, it was also used the typeorm and the docker for the creation of the container along with postgres.
 
-# Como testar
+The project is still under development!!!
 
-- antes de rodar o servidor utilize o comando ``npm install`` para baixar todos os pacotes e bibliotecas utilizados nessa API.
+# How to test
 
-- quando baixado esse arquivo é possível executar o servidor com o comando ``yarn dev:server`` ou ``npm dev:server``
+- before running the server use the ``npm install`` command to download all packages and libraries used in this API.
 
-- não se esqueça de rodar a migration na sua maquina pois ainda não colocamos a API em um servidor porque ela ainda está em desenvolvimento.
+- once this file is downloaded you can run the server with the command ``yarn dev:server`` or ``npm dev:server``
 
-- Para rodar a migration basta dar ``yarn typeorm migration:run`` ou ``npm typeorm migration:run``
+- don't forget to run the migration on your machine as we haven't put the API on a server yet because it's still under development.
 
-- afim de testar as rotas pode-se utilizar softwares como o insomnia ou testar com o próprio front-end do EDUCO que se encontra no link: https://github.com/GitHubWithCjcnch/educo-project.git 
+- To run the migration just give ``yarn typeorm migration:run`` or ``npm typeorm migration:run``
 
-- E pronto, aproveite 🎉
+- in order to test the routes, you can use software such as insomnia or test it with the EDUCO front-end that you can find at the link: https://github.com/GitHubWithCjcnch/educo-project.git
+
+- And that's it, enjoy 🎉
