@@ -23,6 +23,12 @@ class User {
   @Column('varchar')
   password: string;
 
+  @Column('varchar')
+  bio: string;
+
+  @Column('date')
+  birth: Date;
+
   @Column()
   avatar: number
 
