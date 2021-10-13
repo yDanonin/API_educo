@@ -9,8 +9,8 @@ interface Request {
     name: string;
     email: string;
     password: string;
-    bio: string;
     birth: Date;
+    bio?: string;
     nomeImage?: string;
     localImage?: string;
 }

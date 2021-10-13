@@ -29,7 +29,8 @@ export default class CreateUser1630022430308 implements MigrationInterface {
                 },
                 {
                     name: 'bio',
-                    type: 'varchar'
+                    type: 'varchar',
+                    isNullable: true
                 },
                 {
                   name: 'birth',
