@@ -9,11 +9,13 @@ interface Request {
     name: string;
     email: string;
     password: string;
+    bio: string;
+    birth: Date;
     nomeImage?: string;
     localImage?: string;
 }
 class CreateUserService{
-    public async execute({ name, email, password, nomeImage, localImage }: Request): Promise<User>{
+    public async execute({ name, email, password, nomeImage, bio, birth, localImage }: Request): Promise<User>{
         const usersRepository = getRepository(User);
         const createImage = new CreateImageService();
         const alterAvatar = new AlterAvatarService();
@@ -31,6 +33,8 @@ class CreateUserService{
         const user = usersRepository.create({
             name,
             email,
+            bio,
+            birth,
             password: hashedPassword,
         });
 
