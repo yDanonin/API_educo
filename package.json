@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.3.0",
     "typeorm": "^0.2.37",
     "uuidv4": "^6.2.12"
   },
