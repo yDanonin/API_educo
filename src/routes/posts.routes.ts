@@ -5,7 +5,7 @@ import GetPostService from "../services/GetPostService";
 import DeletePostService from "../services/DeletePostService";
 
 const postsRouter = Router()
-
+let countPost
 postsRouter.post('/', async (request, response) => {
   try {
     const { userId, text, imageId, groupId } = request.body;
@@ -18,7 +18,7 @@ postsRouter.post('/', async (request, response) => {
       imageId,
       groupId
     })
-
+    countPost++
     return response.json(post)
 
   }catch (err){

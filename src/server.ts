@@ -25,12 +25,22 @@ app.use(cors())
 app.use(express.json())
 app.use(routes)
 
-
+let clients = 0
 io.on('connection', socket =>{
-  console.log('conectado', socket.id)
+  clients++
+
+  socket.broadcast.emit('broadcast', { description: clients + ' clients' })
+
+  socket.on('joinGroup', group =>{
+    socket.join(group)
+    socket.on('sendPost', post =>{
+      socket.broadcast.emit(post)
+    })
+  })
 
   socket.on('disconnect', () => {
-    console.log('desconectado!')
+    clients--
+    socket.broadcast.emit('broadcast', { description: clients + ' clients' })
   })
 })
 
