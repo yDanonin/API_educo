@@ -29,12 +29,15 @@ postsRouter.get('/by_group/:groupId', async (req, res)=> {
   try{
     const stringGroupId = req.params.groupId
     const groupId = +stringGroupId
-    const getPost = new GetPostService();
-    const post = await getPost.execute({groupId})
+    const firstIndex = req.body.firstIndex
+    const lastIndex = req.body.lastIndex
 
-    res.json(post);
+    const getPost = new GetPostService();
+    const post = await getPost.execute({groupId, firstIndex, lastIndex})
+
+    return res.send(post)
   }catch(err){
-    res.status(400).json({error: err.message});
+    return res.status(400).json({error: err.message});
   }
 })
 postsRouter.delete('/:id', async (req, res) => {
