@@ -25,7 +25,7 @@ postsRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message });
   }
 });
-postsRouter.get('/by_group/:groupId', async (req, res)=> {
+postsRouter.post('/by_group/:groupId', async (req, res)=> {
   try{
     const stringGroupId = req.params.groupId
     const groupId = +stringGroupId
