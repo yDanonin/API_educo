@@ -1,5 +1,5 @@
 # API_educo
-Undergraduate thesis project API. The project is an education website where students help students with questions.
+technical thesis project API. The project is an education website where students help students with questions.
 
 the project was built using in the back-end an API made with Node.js and with the express framework, it was also used the typeorm and the docker for the creation of the container along with postgres.
 
