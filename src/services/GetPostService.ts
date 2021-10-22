@@ -17,8 +17,8 @@ class GetPostService{
 
       }
       else if(quantity != null){
-        const lastIndex = await postRepository.findOne({where: {groupId}, order:{id:"DESC"}})
-        const post = await postRepository.find({groupId,id: Between(lastIndex['id']-quantity, lastIndex['id'])})
+        const lastPost = await postRepository.findOne({where: {groupId}, order:{id:"DESC"}})
+        const post = await postRepository.find({groupId,id: Between(lastPost['id']-quantity, lastPost['id'])})
         return post;
       }
       else{
