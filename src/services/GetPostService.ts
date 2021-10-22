@@ -1,4 +1,4 @@
-import { Between, getRepository, IsNull } from 'typeorm';
+import { Between, getRepository } from 'typeorm';
 
 import Post from '../models/Post';
 
