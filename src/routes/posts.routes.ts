@@ -29,11 +29,11 @@ postsRouter.post('/by_group/:groupId', async (req, res)=> {
   try{
     const stringGroupId = req.params.groupId
     const groupId = +stringGroupId
-    const firstIndex = req.body.firstIndex
-    const lastIndex = req.body.lastIndex
+    const startIndex = req.body.startIndex
+    const quantity = req.body.quantity
 
     const getPost = new GetPostService();
-    const post = await getPost.execute({groupId, firstIndex, lastIndex})
+    const post = await getPost.execute({groupId, startIndex, quantity})
 
     return res.send(post)
   }catch(err){
