@@ -11,11 +11,11 @@ interface Request {
     password: string;
     birth: Date;
     bio?: string;
-    nomeImage?: string;
+    nameImage?: string;
     localImage?: string;
 }
 class CreateUserService{
-    public async execute({ name, email, password, nomeImage, bio, birth, localImage }: Request): Promise<User>{
+    public async execute({ name, email, password, nameImage, bio, birth, localImage }: Request): Promise<User>{
         const usersRepository = getRepository(User);
         const createImage = new CreateImageService();
         const alterAvatar = new AlterAvatarService();
@@ -41,10 +41,10 @@ class CreateUserService{
 
         await usersRepository.save(user);
 
-        if(localImage != null && nomeImage != null){
+        if(localImage != null && nameImage != null){
           const image = await createImage.execute({
             userId: user.id,
-            nome: nomeImage,
+            nome: nameImage,
             local: localImage
           })
           await alterAvatar.execute({

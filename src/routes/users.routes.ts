@@ -9,7 +9,7 @@ const usersRouter = Router()
 
 usersRouter.post('/', async (req, res) => {
   try {
-    const { name, email, password, bio, birth, nomeImage, localImage } = req.body;
+    const { name, email, password, bio, birth, nameImage, localImage } = req.body;
     const createUser = new CreateUserService();
     const user = await createUser.execute({
       name,
@@ -17,7 +17,7 @@ usersRouter.post('/', async (req, res) => {
       password,
       bio,
       birth,
-      nomeImage,
+      nameImage,
       localImage
     });
 
