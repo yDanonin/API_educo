@@ -11,7 +11,7 @@ class GetPostService{
     public async execute({ groupId, startIndex, quantity }: post): Promise<any>{
       const postRepository = getRepository(Post)
       if(startIndex != null && quantity != null){
-        const post = await postRepository.find({groupId,id: Between(startIndex-quantity, startIndex)})
+        const post = await postRepository.find({groupId,id: Between(startIndex-quantity+1, startIndex)})
         console.log(startIndex-quantity)
         return post;
 
