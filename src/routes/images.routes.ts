@@ -6,20 +6,21 @@ import DeleteImageService from "../services/DeleteImageService";
 
 const imagesRouter = Router()
 
-imagesRouter.post('/', async (request, response) => {
+imagesRouter.post('/', async (req, res) => {
   try{
-    const { userId, nome, local } = request.body
+    const { userId, nome, local } = req.body
     const createImage = new CreateImageService();
+
     const images = await createImage.execute({
       userId,
       nome,
       local,
     })
 
-    return response.json(images)
+    return res.json(images)
   }catch (err){
 
-    return response.status(400).json({ error: err.message });
+    return res.status(400).json({ error: err.message });
   }
 
 });
