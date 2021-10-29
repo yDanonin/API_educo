@@ -15,7 +15,7 @@ class GetGroupsService{
       const groups: Array<any> = []
 
       for(let group of participant){
-        groups.push(await groupRepository.find({where:{ id: group.groupId }}));
+        groups.push(await groupRepository.findOne({where:{ id: group.groupId }}));
       }
 
       return groups;

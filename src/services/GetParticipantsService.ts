@@ -16,9 +16,9 @@ class GetParticipantsService{
     const users: Array<any> = []
     let contador: number = 0
     for(let participant of participants){
-      users.push(await userRepository.find({where: {id: participant.userId}}))
-      delete users[contador][0].password
-      delete users[contador][0].email
+      users.push(await userRepository.findOne({where: {id: participant.userId}}))
+      delete users[contador].password
+      delete users[contador].email
       contador += 1
     }
     return users
