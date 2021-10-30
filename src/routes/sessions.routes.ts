@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 import AuthenticateUserService from "../services/AuthenticateUserServicec";
+import GetUserService from "../services/GetUserService";
 
 const sessionsRouter = Router()
 
@@ -32,7 +33,10 @@ sessionsRouter.use(ensureAuthenticated);
 
 sessionsRouter.get('/', async (request, response) => {
   try{
-  return response.json(request.user)
+    const userService = new GetUserService()
+    const id = request.user.id
+    const user = await userService.execute({id: id})
+    return response.json(user)
   }
   catch(err){
     return response.status(400).json({error: err.message});
