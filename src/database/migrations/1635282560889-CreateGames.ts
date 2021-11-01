@@ -22,6 +22,10 @@ export default class CreateGames1635282560889 implements MigrationInterface {
                   type: 'varchar',
                 },
                 {
+                  name: 'keyWords',
+                  type: 'varchar'
+                },
+                {
                   name: 'type',
                   type: 'varchar',
                 },
