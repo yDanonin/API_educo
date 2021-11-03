@@ -24,7 +24,7 @@ usersRouter.post('/', async (req, res) => {
     delete user.password
 
 
-    return res.json("Usuário cadastrado com sucesso.");
+    return res.json(user);
   }catch (err){
     //console.log(request.body)
     //console.log(err);

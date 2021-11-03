@@ -8,12 +8,12 @@ const imagesRouter = Router()
 
 imagesRouter.post('/', async (req, res) => {
   try{
-    const { userId, nome, local } = req.body
+    const { userId, name, local } = req.body
     const createImage = new CreateImageService();
 
     const images = await createImage.execute({
       userId,
-      nome,
+      nome: name,
       local,
     })
 
