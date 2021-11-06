@@ -1,23 +1,28 @@
 import { Router } from "express";
+import multer from 'multer'
 
 import CreateImageService from "../services/CreateImageService";
 import GetImageService from "../services/GetImageService";
 import DeleteImageService from "../services/DeleteImageService";
 
+
 const imagesRouter = Router()
+const upload = multer({dest: "src/upload"})
 
-imagesRouter.post('/', async (req, res) => {
+imagesRouter.post('/', upload.single('productImage'), async (req, res) => {
   try{
-    const { userId, name, local } = req.body
-    const createImage = new CreateImageService();
+    //const { userId, name, local } = req.body
+    const image = req.file
+    console.log(image)
+    //const createImage = new CreateImageService();
 
-    const images = await createImage.execute({
+    /*const images = await createImage.execute({
       userId,
       nome: name,
       local,
-    })
+    })*/
 
-    return res.json(images)
+    return res.json(image)
   }catch (err){
 
     return res.status(400).json({ error: err.message });
