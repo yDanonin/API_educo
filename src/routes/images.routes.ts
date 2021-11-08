@@ -7,13 +7,23 @@ import DeleteImageService from "../services/DeleteImageService";
 
 
 const imagesRouter = Router()
-const upload = multer({dest: "src/upload"})
 
-imagesRouter.post('/', upload.single('productImage'), async (req, res) => {
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, 'src/upload')
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
+
+imagesRouter.post('/', upload.single('image'), async (req, res) => {
   try{
-    //const { userId, name, local } = req.body
+    const { userId, name, local } = req.body
     const image = req.file
-    console.log(image)
+    console.log(image, name)
     //const createImage = new CreateImageService();
 
     /*const images = await createImage.execute({
