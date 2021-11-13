@@ -2,8 +2,11 @@ import { Router } from "express";
 
 import CreateParticipantService from "../services/CreateParticipantService";
 import GetParticipantsService from "../services/GetParticipantsService";
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const participantsRouter = Router()
+
+participantsRouter.use(ensureAuthenticated)
 
 interface Participant{
   userId: string,

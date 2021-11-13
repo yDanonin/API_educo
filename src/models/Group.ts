@@ -36,6 +36,8 @@ class Group {
   @Column()
   nome: string
 
+  imageUrl: string
+
   @CreateDateColumn()
   created_at: Date;
 

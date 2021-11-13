@@ -2,8 +2,12 @@ import { Router } from "express";
 
 import CreateGroupService from "../services/CreateGroupService";
 import GetGroupsService from "../services/GetGroupsService";
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
+
 
 const groupsRouter = Router()
+
+groupsRouter.use(ensureAuthenticated)
 
 interface Group{
   creator: string,

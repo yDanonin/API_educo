@@ -4,6 +4,7 @@ import CreateUserService from "../services/CreateUserService";
 import AlterAvatarService from "../services/AlterAvatarService";
 import GetUserService from "../services/GetUserService";
 import DeleteUserService from "../services/DeleteUserService";
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const usersRouter = Router()
 
@@ -32,6 +33,7 @@ usersRouter.post('/', async (req, res) => {
   }
 });
 
+usersRouter.use(ensureAuthenticated)
 usersRouter.get('/by_id/:id', async (req, res) => {
   try{
     const { id } = req.params;

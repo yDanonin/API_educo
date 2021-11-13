@@ -44,6 +44,11 @@ io.on('connection', socket =>{
   })
 })
 
+declare global{
+  var baseUrl: string
+}
+
+global.baseUrl = 'http://localhost:3333'
 server.listen(3333, () =>{
   console.log('Server started on port 3333!');
 });

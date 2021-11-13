@@ -39,7 +39,11 @@ class CreateGroupService{
 
         await participantRepository.save(participant)
 
-        return group;
+        const response = group
+
+        response.imageUrl = global.baseUrl+'/images/by_id/'+group.imageId
+
+        return response;
     }
 
 }

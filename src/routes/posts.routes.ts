@@ -3,8 +3,11 @@ import { Router } from "express";
 import CreatePostService from "../services/CreatePostService";
 import GetPostService from "../services/GetPostService";
 import DeletePostService from "../services/DeletePostService";
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const postsRouter = Router()
+postsRouter.use(ensureAuthenticated)
+
 let countPost
 postsRouter.post('/', async (request, response) => {
   try {
