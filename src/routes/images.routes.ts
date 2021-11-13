@@ -4,16 +4,19 @@ import multer from 'multer'
 import CreateImageService from "../services/CreateImageService";
 import GetImageService from "../services/GetImageService";
 import DeleteImageService from "../services/DeleteImageService";
+import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 
 const imagesRouter = Router()
+
+imagesRouter.use(ensureAuthenticated);
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb){
     cb(null, 'src/upload')
   },
   filename: function(req, file, cb){
-    cb(null, /*new Date().toISOString() +*/ file.originalname)
+    cb(null, req.user.id +'.'+ file.originalname)
   }
 })
 
@@ -34,18 +37,16 @@ const upload = multer({
 
 imagesRouter.post('/', upload.single('image'), async (req, res) => {
   try{
-    const { userId, name, local } = req.body
-    const image = req.file
-    console.log(image, name)
-    //const createImage = new CreateImageService();
-
-    /*const images = await createImage.execute({
+    const diretorio = __dirname.split('src')[0]
+    const userId = req.user.id
+    const createImage = new CreateImageService();
+    const images = await createImage.execute({
       userId,
-      nome: name,
-      local,
-    })*/
+      nome: userId+'.'+req.file.originalname,
+      local: diretorio+req.file.path,
+    })
 
-    return res.json(image)
+    return res.sendFile(diretorio+req.file.path)
   }catch (err){
 
     return res.status(400).json({ error: err.message });
@@ -59,9 +60,8 @@ imagesRouter.get('/by_id/:id', async (req, res) => {
     const StringId  = req.params.id;
     const id = +StringId
     const getImage = new GetImageService()
-
     const image = await getImage.execute({id})
-    return res.json(image);
+    return res.sendFile(image.local)
   }
   catch(err){
 
