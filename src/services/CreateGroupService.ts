@@ -6,7 +6,7 @@ import Participant from '../models/Participant';
 
 interface Request {
     creator: string;
-    imageId: number;
+    imageId?: number;
     description: string;
     nome: string;
 }
@@ -16,11 +16,13 @@ class CreateGroupService{
         const imageRepository = getRepository(Image);
         const participantRepository = getRepository(Participant);
 
-        const checkImageExist = await imageRepository.findOne({
-          where: { id: imageId, userId: creator }
-        })
-        if (!checkImageExist){
-          throw new Error('image does not exist')
+        if(imageId){
+          const checkImageExist = await imageRepository.findOne({
+            where: { id: imageId, userId: creator }
+          })
+          if (!checkImageExist){
+            throw new Error('image does not exist')
+          }
         }
 
         const group = groupsRepository.create({

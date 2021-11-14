@@ -11,7 +11,7 @@ groupsRouter.use(ensureAuthenticated)
 
 interface Group{
   creator: string,
-  imageId: number,
+  imageId?: number,
   description: string,
   name: string,
 };

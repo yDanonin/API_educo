@@ -15,6 +15,7 @@ export class CreateGroup1632668126144 implements MigrationInterface {
             {
               name: 'imageId',
               type: 'int',
+              isNullable: true,
             },
             {
               name: 'creator',
