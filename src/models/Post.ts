@@ -41,6 +41,8 @@ class Post {
   @JoinColumn({ name: "imageId" })
   images: Images;
 
+  imageUrl: string
+
   @CreateDateColumn()
   created_at: Date;
 

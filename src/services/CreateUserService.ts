@@ -53,6 +53,10 @@ class CreateUserService{
           })
         }
 
+        if(user.avatar){
+          user.imageUrl = global.baseUrl+'/images/by_id/'+user.avatar
+        }
+
         return user;
     }
 

@@ -17,6 +17,11 @@ class GetGroupsService{
       for(let group of participant){
         groups.push(await groupRepository.findOne({where:{ id: group.groupId }}));
       }
+      for(let i = 0; i<groups.length; i++){
+        if(groups[i].imageId){
+          groups[i].imageUrl = global.baseUrl+'/images/by_id/'+groups[i].imageId
+        }
+      }
 
       return groups;
   }

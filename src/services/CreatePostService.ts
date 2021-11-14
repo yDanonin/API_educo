@@ -40,6 +40,13 @@ class CreatePostService{
 
         await postsRepository.save(post);
 
+        if(post.imageUrl){
+          const response = post
+
+          response.imageUrl = global.baseUrl+'/images/by_id/'+post.imageId
+          return response
+        }
+
         return post;
     }
 

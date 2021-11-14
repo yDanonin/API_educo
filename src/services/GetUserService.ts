@@ -20,6 +20,9 @@ class GetUserService{
         delete checkUserExists.password
         delete checkUserExists.email
 
+        if(checkUserExists.avatar){
+          checkUserExists.imageUrl = global.baseUrl+'/images/by_id/'+checkUserExists.avatar
+        }
         return checkUserExists;
     }
 

@@ -32,6 +32,8 @@ class User {
   @Column()
   avatar: number
 
+  imageUrl: string
+
   @OneToOne(() => Images, (image) => image.id)
   @JoinColumn({ name: "avatar" })
   avatarId: Images;
