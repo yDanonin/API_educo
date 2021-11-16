@@ -6,7 +6,7 @@ import imagesRouter from "./images.routes";
 import groupsRouter from "./groups.routes";
 import participantsRouter from "./participants.routes";
 import postsRouter from "./posts.routes";
-
+import answerRouter from "./answer.routes";
 
 const routes = Router();
 
@@ -16,6 +16,7 @@ routes.use('/images',imagesRouter);
 routes.use('/groups', groupsRouter);
 routes.use('/participants', participantsRouter)
 routes.use('/posts', postsRouter);
+routes.use('/answer', answerRouter)
 
 
 export default routes

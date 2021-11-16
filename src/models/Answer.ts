@@ -9,8 +9,8 @@ import {
 
 import Post from './Post';
 
-@Entity('participants')
-class Participant {
+@Entity('answer')
+class Answer {
   @PrimaryColumn()
   answerId: number;
 
@@ -32,4 +32,4 @@ class Participant {
   updated_at: Date;
 }
 
-export default Participant;
+export default Answer;
