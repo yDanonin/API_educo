@@ -19,7 +19,12 @@ class GetParticipantsService{
       users.push(await userRepository.findOne({where: {id: participant.userId}}))
       delete users[contador].password
       delete users[contador].email
+      if(users[contador]['avatar']){
+        users[contador]['imageUrl'] = global.baseUrl+'/images/by_id/'+users[contador]['avatar']
+      }
+
       contador += 1
+
     }
     return users
   }

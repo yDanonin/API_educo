@@ -46,7 +46,8 @@ imagesRouter.post('/', upload.single('image'), async (req, res) => {
       local: diretorio+req.file.path,
     })
 
-    return res.sendFile(diretorio+req.file.path)
+    return res.json(images)
+    //return res.sendFile(diretorio+req.file.path).json(images)
   }catch (err){
 
     return res.status(400).json({ error: err.message });
