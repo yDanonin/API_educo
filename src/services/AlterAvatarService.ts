@@ -26,6 +26,7 @@ class AlterAvatarService{
         checkUserExists.avatar = avatar
         await usersRepository.save(checkUserExists);
 
+        checkImageExist.imageUrl = global.baseUrl+'/images/by_id/'+checkImageExist.id
         return checkImageExist
     }
 }

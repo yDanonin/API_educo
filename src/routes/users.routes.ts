@@ -47,14 +47,14 @@ usersRouter.get('/by_id/:id', async (req, res) => {
   }
 })
 
-usersRouter.put('/avatar/:id', async (req, res) => {
+usersRouter.put('/avatar', async (req, res) => {
   try{
-    const { id }  = req.params
+    const id = req.user.id
     const { avatar } = req.body
     const alterAvatar = new AlterAvatarService();
     const localAvatar = await alterAvatar.execute({id, avatar})
 
-    return res.json({local: localAvatar.local})
+    return res.json({local: localAvatar.local, imageUrl: localAvatar.imageUrl})
   }catch (err){
     return res.status(400).json({ error: err.message });
   }

@@ -32,6 +32,8 @@ class Images {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  imageUrl: string;
 }
 
 export default Images;
