@@ -51,9 +51,9 @@ postsRouter.delete('/:id', async (req, res) => {
 
     const response = await deletePost.execute({id})
 
-    res.json(response);
+    return res.json(response);
   }catch(err){
-    res.status(400).json({error: err.message});
+    return res.status(400).json({error: err.message});
   }
 })
 
