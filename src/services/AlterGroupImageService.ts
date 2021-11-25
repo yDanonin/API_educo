@@ -27,6 +27,8 @@ class AlterGroupImageService{
         checkGroupExists.imageId = imageId
         await groupRepository.save(checkGroupExists);
 
+        checkGroupExists.imageUrl = global.baseUrl+'/images/by_id/'+checkGroupExists.imageId
+
         return checkGroupExists
     }
 }
