@@ -2,7 +2,10 @@ import { Router } from "express";
 import multer from 'multer'
 
 import CreateGamesService from "../services/CreateGamesService";
+<<<<<<< HEAD
 import GetGamesService from "../services/GetGamesService";
+=======
+>>>>>>> 70919bed9000a7cb2ee1466f6485572770c04a64
 import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const gamesRouter = Router()
@@ -44,6 +47,7 @@ gamesRouter.post('/', upload.single('game'), async (req, res) => {
 
 });
 
+<<<<<<< HEAD
 gamesRouter.get('/by_id/:id', async (req, res) => {
   try{
     const StringId  = req.params.id;
@@ -57,4 +61,6 @@ gamesRouter.get('/by_id/:id', async (req, res) => {
   }
 })
 
+=======
+>>>>>>> 70919bed9000a7cb2ee1466f6485572770c04a64
 export default gamesRouter;
