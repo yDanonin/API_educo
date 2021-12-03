@@ -26,8 +26,12 @@ export class CreateGroup1632668126144 implements MigrationInterface {
               type: 'text',
             },
             {
-              name: 'nome',
+              name: 'name',
               type: 'varchar',
+            },
+            {
+              name: 'isPrivate',
+              type: 'boolean'
             },
             {
               name: 'created_at',
@@ -39,6 +43,7 @@ export class CreateGroup1632668126144 implements MigrationInterface {
               type: 'timestamp',
               default: 'now()',
             },
+
           ]
         })
       )
