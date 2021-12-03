@@ -15,17 +15,19 @@ interface Group{
   imageId?: number,
   description: string,
   name: string,
+  isPrivate: boolean
 };
 groupsRouter.post('/', async (req, res) =>{
   try{
-    const { creator, imageId, description, name }: Group = req.body;
+    const { creator, imageId, description, name, isPrivate }: Group = req.body;
     const createGroup = new CreateGroupService()
 
     const group = await createGroup.execute({
       creator,
       imageId,
       description,
-      nome: name,
+      name,
+      isPrivate
     })
 
     return res.json(group)

@@ -8,10 +8,11 @@ interface Request {
     creator: string;
     imageId?: number;
     description: string;
-    nome: string;
+    name: string;
+    isPrivate: boolean
 }
 class CreateGroupService{
-    public async execute({ creator, imageId, description, nome }: Request): Promise<Group>{
+    public async execute({ creator, imageId, description, name, isPrivate }: Request): Promise<Group>{
         const groupsRepository = getRepository(Group);
         const imageRepository = getRepository(Image);
         const participantRepository = getRepository(Participant);
@@ -29,7 +30,8 @@ class CreateGroupService{
             creator,
             imageId,
             description,
-            nome,
+            name,
+            isPrivate
         });
 
         await groupsRepository.save(group);

@@ -34,7 +34,10 @@ class Group {
   images: Images;
 
   @Column()
-  nome: string
+  name: string
+
+  @Column()
+  isPrivate: boolean
 
   imageUrl: string
 
