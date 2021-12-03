@@ -19,8 +19,9 @@ class CreateGroupService{
 
         if(imageId){
           const checkImageExist = await imageRepository.findOne({
-            where: { id: imageId, userId: creator }
+            where: { id: imageId }
           })
+          console.log(checkImageExist)
           if (!checkImageExist){
             throw new Error('image does not exist')
           }
