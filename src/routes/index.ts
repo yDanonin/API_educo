@@ -8,6 +8,7 @@ import participantsRouter from "./participants.routes";
 import postsRouter from "./posts.routes";
 import answerRouter from "./answer.routes";
 import followersRouter from "./followers.routes";
+import gamesRouter from "./games.routes";
 
 const routes = Router();
 
@@ -19,6 +20,7 @@ routes.use('/participants', participantsRouter)
 routes.use('/posts', postsRouter);
 routes.use('/answer', answerRouter)
 routes.use('/follower', followersRouter)
+routes.use('/games', gamesRouter)
 
 
 export default routes
