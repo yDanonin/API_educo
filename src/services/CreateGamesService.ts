@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import Games from '../models/Games';
 
 interface Request {
-    apkName: string;
+    apkName?: string;
     userId: string;
     type: string
     description: string
