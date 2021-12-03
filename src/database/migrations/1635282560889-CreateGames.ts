@@ -20,6 +20,7 @@ export default class CreateGames1635282560889 implements MigrationInterface {
                 {
                   name: 'apkName',
                   type: 'varchar',
+                  isNullable: true,
                 },
                 {
                   name: 'keyWords',
