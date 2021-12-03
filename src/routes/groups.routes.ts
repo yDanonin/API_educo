@@ -4,6 +4,7 @@ import CreateGroupService from "../services/CreateGroupService";
 import AlterGroupImageService from "../services/AlterGroupImageService";
 import GetGroupsService from "../services/GetGroupsService";
 import GetGroupService from "../services/GetGroupService";
+import AlterGroupService from "../services/AlterGroupService";
 import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 
@@ -15,7 +16,7 @@ groupsRouter.use(ensureAuthenticated)
 interface Group{
   creator: string,
   imageId?: number,
-  description: string,
+  description?: string,
   name: string,
   isPrivate: boolean
 };
@@ -67,14 +68,14 @@ groupsRouter.get('/by_userId/:userId', async (req, res) => {
 })
 
 
-groupsRouter.put('/image/:groupId', async (req, res) => {
+groupsRouter.put('/:groupId', async (req, res) => {
   try{
     const userId = req.user.id
     const groupId = req.params.groupId
     const id = +groupId
-    const imageId = req.body.imageId
-    const alterGroupImage = new AlterGroupImageService()
-    const newGroup = await alterGroupImage.execute({ userId, id, imageId })
+    const { imageId, description, name } = req.body
+    const alterGroup = new AlterGroupService()
+    const newGroup = await alterGroup.execute({ userId, id, imageId, description, name})
     return res.json(newGroup)
   }catch(err){
     return res.status(400).json({error: err.message})
