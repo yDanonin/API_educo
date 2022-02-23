@@ -11,8 +11,6 @@ The project is still under development!!!
 
 - once this file is downloaded you can run the server with the command ``yarn dev:server`` or ``npm dev:server``
 
-- don't forget to run the migration on your machine as we haven't put the API on a server yet because it's still under development.
-
 - To run the migration just give ``yarn typeorm migration:run`` or ``npm run typeorm migration:run``
 
 - in order to test the routes, you can use software such as insomnia or test it with the EDUCO front-end that you can find at the link: https://github.com/GitHubWithCjcnch/educo-project.git
