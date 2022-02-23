@@ -7,7 +7,7 @@ The project is still under development!!!
 
 # How to test
 
-- clone the repository with ``git clone https://github.com/yDanonin/API_educo``
+- clone the repository with ``git clone https://github.com/yDanonin/API_educo.git``
 
 - before running the server use the ``npm install`` command to download all packages and libraries used in this API.
 
