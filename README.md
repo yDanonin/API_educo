@@ -7,6 +7,8 @@ The project is still under development!!!
 
 # How to test
 
+- clone the repository with ``git clone https://github.com/yDanonin/API_educo``
+
 - before running the server use the ``npm install`` command to download all packages and libraries used in this API.
 
 - once this file is downloaded you can run the server with the command ``yarn dev:server`` or ``npm dev:server``
