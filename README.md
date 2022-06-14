@@ -11,7 +11,7 @@ The project is still under development!!!
 
 - before running the server use the ``npm install`` command to download all packages and libraries used in this API.
 
-- once this file is downloaded you can run the server with the command ``yarn dev:server`` or ``npm dev:server``
+- once this file is downloaded you can run the server with the command ``yarn dev:server`` or ``npm run dev:server``
 
 - To run the migration just give ``yarn typeorm migration:run`` or ``npm run typeorm migration:run``
 
